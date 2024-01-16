@@ -1,9 +1,11 @@
 rm(list=ls())
-setwd("YOUR FOLDER COMSE HERE")
-source("MFCM_Functions_V1.R")
+# setwd("YOUR FOLDER COMSE HERE")
+setwd("/Users/haydardemirhan/Documents/makaleler/W_GND_FKMmix/analysis/MFCM_R_Codes/")
+source("MFCM_Functions_V2.R")
 
 data <- read.csv("datasets/19_lalondeUse.csv")
 load(file = "distMats/genDistdata19.RData")
+load(file = "mixDist/data19MixDist.RData")
 
 contVars <- c(2,3,7,8,9)
 nomVars <- c(4)
@@ -28,5 +30,6 @@ c <- 2
 m <- 1.1
 res <- runAllMethods(data = data, c = c, m = m, varStatus = varStatus, weightStatus = weightStatus, 
                      allRanges = allRanges, contVars = contVars, nomVars = nomVars, binVars = binVars, 
-                     ordVars = ordVars, distanceMatrix = genDistdata, seed = 1234)
+                     ordVars = ordVars, distanceMatrix = genDistdata, mixDistanceMatrix = mixDist, 
+                     seed = 1234, DoAll = TRUE)
 res$allRes

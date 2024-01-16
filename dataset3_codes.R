@@ -1,10 +1,12 @@
 rm(list=ls())
-setwd("YOUR FOLDER COMSE HERE")
-source("MFCM_Functions_V1.R")
+# setwd("YOUR FOLDER COMSE HERE")
+setwd("/Users/haydardemirhan/Documents/makaleler/W_GND_FKMmix/analysis/MFCM_R_Codes/")
+source("MFCM_Functions_V2.R")
 
 
 data <- read.csv("datasets/3_absenteeismUse.csv")
 load(file = "distMats/genDistdata3.RData")
+load(file = "mixDist/data3MixDist.RData")
 
 contVars <- c(5)
 nomVars <- NULL
@@ -35,7 +37,9 @@ optimalScores(clRes)
 weightStatus <- calcEntropy(data, contVars, binVars, nomVars)
 c <- 2
 m <- 1.5
+
 res <- runAllMethods(data = data, c = c, m = m, varStatus = varStatus, weightStatus = weightStatus, 
                      allRanges = allRanges, contVars = contVars, nomVars = nomVars, binVars = binVars, 
-                     ordVars = ordVars, distanceMatrix = genDistdata, seed = 1234)
+                     ordVars = ordVars, distanceMatrix = genDistdata, mixDistanceMatrix = mixDist, 
+                     seed = 1234, DoAll = FALSE)
 res$allRes
